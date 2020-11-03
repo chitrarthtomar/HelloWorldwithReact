@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import AddCounter from "../AddCounter";
 
-export default class NavMessage extends Component {
+class NavMessage extends Component {
   constructor() {
     super();
     this.state = {
@@ -9,6 +10,7 @@ export default class NavMessage extends Component {
     //this.update5Blah = this.update5Blah.bind(this);
   }
   updateBlah() {
+    console.log(this.props);
     this.setState(
       (prev) => ({ message: "not " + prev.message }),
       () => {
@@ -18,6 +20,7 @@ export default class NavMessage extends Component {
   }
 
   update5Blah = () => {
+    this.props.increaseCount();
     this.updateBlah();
     this.updateBlah();
     this.updateBlah();
@@ -27,6 +30,7 @@ export default class NavMessage extends Component {
   render() {
     return (
       <div>
+        <h3>Button has been clicked {this.props.count} times</h3>
         <h3>This is nav message: {this.state.message}</h3>
         <button onClick={this.update5Blah}>click me</button>
         <br />
@@ -49,3 +53,4 @@ export default class NavMessage extends Component {
     );
   }
 }
+export default AddCounter(NavMessage);
